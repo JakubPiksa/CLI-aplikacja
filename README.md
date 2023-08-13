@@ -1,11 +1,11 @@
 # CLI-aplikacja
 
-# Przykład działania
+## Przykład działania
 
-https://ibb.co/jJZbxXy - node index.js --action list
-https://ibb.co/Dg5Wsp7 - node index.js --action get --id <contactId>
-https://ibb.co/P65Pz7X - node index.js --action add -n <name> -e <email> -p <phone>
-https://ibb.co/G71D5LV - node index.js --action remove --id <contactId>
+- https://ibb.co/jJZbxXy - node index.js --action list
+- https://ibb.co/Dg5Wsp7 - node index.js --action get --id <contactId>
+- https://ibb.co/P65Pz7X - node index.js --action add -n <name> -e <email> -p <phone>
+- https://ibb.co/G71D5LV - node index.js --action remove --id <contactId>
 
 Prosta aplikacja wiersza poleceń umożliwiająca zarządzanie listą kontaktów.
 
@@ -14,7 +14,10 @@ Prosta aplikacja wiersza poleceń umożliwiająca zarządzanie listą kontaktów
 1. **Instalacja zależności**
 
    Przed rozpoczęciem korzystania z aplikacji, upewnij się, że masz zainstalowanego Node.js. Następnie wykonaj następujące polecenie w katalogu projektu, aby zainstalować wymagane zależności:
-   _npm install_
+
+   ```
+   npm install
+   ```
 
 2. **Uruchamianie Aplikacji**
 
