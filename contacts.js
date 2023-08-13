@@ -22,7 +22,7 @@ function removeContact(contactId) {
         const updatedContacts = contacts.filter((c) => c.id !== contactId);
         fs.writeFileSync(contactsPath, JSON.stringify(updatedContacts, null, 2));
         console.log(`Contact with ID ${contactId} removed.`);
-        return `Contact with ID ${contactId} removed.`; // Dodaj tę linię
+        return `Contact with ID ${contactId} removed.`; 
     } catch (error) {
         console.error('Error removing contact:', error);
         return null;
