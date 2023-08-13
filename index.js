@@ -1,66 +1,40 @@
-const yargs = require('yargs');
+const { Command } = require('commander');
 const { listContacts, getContactById, removeContact, addContact } = require('./contacts');
 
-const argv = yargs
-  .command('list', 'List all contacts')
-  .command('get', 'Get contact by ID', {
-    id: {
-      describe: 'Contact ID',
-      demandOption: true,
-      type: 'string',
-    },
-  })
-  .command('add', 'Add a new contact', {
-    name: {
-      describe: 'Contact name',
-      demandOption: true,
-      type: 'string',
-    },
-    email: {
-      describe: 'Contact email',
-      demandOption: true,
-      type: 'string',
-    },
-    phone: {
-      describe: 'Contact phone',
-      demandOption: true,
-      type: 'string',
-    },
-  })
-  .command('remove', 'Remove contact by ID', {
-    id: {
-      describe: 'Contact ID',
-      demandOption: true,
-      type: 'string',
-    },
-  })
-  .help()
-  .argv;
+const program = new Command();
 
-const action = argv._[0];
-
-switch (action) {
-  case 'list':
+program
+  .command('list')
+  .description('List all contacts')
+  .action(() => {
     const contacts = listContacts();
     console.table(contacts);
-    break;
+  });
 
-  case 'get':
-    const contactId = argv.id;
-    const contact = getContactById(contactId);
+program
+  .command('get <id>')
+  .description('Get contact by ID')
+  .action((id) => {
+    const contact = getContactById(id);
     console.log(contact);
-    break;
+  });
 
-  case 'add':
-    const { name, email, phone } = argv;
+program
+  .command('add')
+  .description('Add a new contact')
+  .requiredOption('-n, --name <name>', 'Contact name')
+  .requiredOption('-e, --email <email>', 'Contact email')
+  .requiredOption('-p, --phone <phone>', 'Contact phone')
+  .action((options) => {
+    const { name, email, phone } = options;
     addContact(name, email, phone);
-    break;
+  });
 
-  case 'remove':
-    const contactIdToRemove = argv.id;
-    removeContact(contactIdToRemove);
-    break;
+program
+  .command('remove <id>')
+  .description('Remove contact by ID')
+  .action((id) => {
+    removeContact(id);
+  });
 
-  default:
-    console.log('Unknown action type!');
-}
+program.parse(process.argv);
